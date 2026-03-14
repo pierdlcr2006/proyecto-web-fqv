@@ -1,0 +1,162 @@
+---
+const currentPath = Astro.url.pathname;
+const links = [
+	{ label: 'Inicio', href: '/' },
+	{ label: 'Nosotros', href: '/nosotros' },
+	{ label: 'Servicios', href: '/servicios' },
+	{ label: 'Proyectos', href: '/proyectos' },
+	{ label: 'Clientes', href: '/clientes' },
+	{ label: 'Contacto', href: '/contacto' },
+];
+---
+
+<header id="navbar" class="fixed top-0 left-0 right-0 z-50 py-5 transition-all duration-350 bg-transparent translate-y-0 border-b border-transparent">
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+		<a href="/" class="flex items-baseline gap-1.5">
+			<span class="font-display text-[1.75rem] font-extrabold text-white tracking-tight">FQV</span>
+			<span class="font-display text-lg font-bold text-secondary">SAC</span>
+		</a>
+		<nav id="navLinks" class="hidden lg:flex items-center gap-1 text-white">
+			{links.map((link) => (
+				<a
+					href={link.href}
+					class:list={[
+						'text-white/85 text-sm font-semibold px-4 py-2 rounded-md transition-all duration-250 hover:text-white hover:bg-white/12',
+						{ 'text-primary bg-secondary': currentPath === link.href },
+					]}
+				>
+					{link.label}
+				</a>
+			))}
+		</nav>
+		<button id="navToggle" class="inline-flex lg:hidden items-center justify-center flex-col gap-[5px] bg-primary-light/75 backdrop-blur-sm border border-white/25 rounded-md cursor-pointer w-10 h-10 ml-3 shrink-0 z-[60]" aria-label="Abrir menú">
+			<span class="block w-5 h-0.5 bg-white rounded-sm transition-all duration-300"></span>
+			<span class="block w-5 h-0.5 bg-white rounded-sm transition-all duration-300"></span>
+			<span class="block w-5 h-0.5 bg-white rounded-sm transition-all duration-300"></span>
+		</button>
+	</div>
+	<!-- Mobile menu -->
+	<div id="mobileBackdrop" class="fixed inset-0 bg-dark/60 backdrop-blur-[2px] z-40 hidden lg:hidden"></div>
+	<div id="mobileMenu" class="fixed top-0 right-0 w-[88vw] max-w-[320px] h-screen bg-[#22374d] text-white border-l border-secondary/45 flex-col items-start pt-20 px-8 gap-2 -translate-x-0 translate-x-[105%] transition-transform duration-350 shadow-[-10px_0_30px_rgba(0,0,0,0.35)] hidden lg:hidden z-50">
+		{links.map((link) => (
+			<a
+				href={link.href}
+				class:list={[
+					'block w-full text-white font-semibold px-4 py-3 rounded-md transition-colors duration-250 hover:text-white hover:bg-white/20',
+					{ 'text-primary bg-secondary': currentPath === link.href },
+				]}
+				style={currentPath === link.href ? 'color:#131a23;' : undefined}
+			>
+				{link.label}
+			</a>
+		))}
+	</div>
+</header>
+
+<script>
+	const toggle = document.getElementById('navToggle');
+	const menu = document.getElementById('mobileMenu');
+	const backdrop = document.getElementById('mobileBackdrop');
+	const bars = toggle?.querySelectorAll('span');
+
+	const closeMenu = () => {
+		menu?.classList.remove('translate-x-0', 'flex');
+		menu?.classList.add('translate-x-[105%]', 'hidden');
+		backdrop?.classList.remove('block');
+		backdrop?.classList.add('hidden');
+		bars?.[0]?.classList.remove('rotate-45', 'translate-y-[7px]');
+		bars?.[1]?.classList.remove('opacity-0');
+		bars?.[2]?.classList.remove('-rotate-45', '-translate-y-[7px]');
+	};
+
+	const openMenu = () => {
+		menu?.classList.remove('translate-x-[105%]', 'hidden');
+		menu?.classList.add('translate-x-0', 'flex');
+		backdrop?.classList.remove('hidden');
+		backdrop?.classList.add('block');
+		applyMobileMenuTone();
+		bars?.[0]?.classList.add('rotate-45', 'translate-y-[7px]');
+		bars?.[1]?.classList.add('opacity-0');
+		bars?.[2]?.classList.add('-rotate-45', '-translate-y-[7px]');
+	};
+
+	toggle?.addEventListener('click', () => {
+		const isOpen = menu?.classList.contains('translate-x-0');
+		if (isOpen) {
+			closeMenu();
+		} else {
+			openMenu();
+		}
+	});
+
+	backdrop?.addEventListener('click', closeMenu);
+	menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+
+	const navbar = document.getElementById('navbar');
+	let lastScrollY = window.scrollY;
+
+	const applyNavbarTone = () => {
+		if (!navbar) return;
+		const progress = Math.min(window.scrollY / 180, 1);
+		const bgAlpha = 0.92 * progress;
+		const borderAlpha = 0.14 * progress;
+		const shadowAlpha = 0.26 * progress;
+
+		navbar.style.backgroundColor = `rgba(9, 13, 18, ${bgAlpha.toFixed(3)})`;
+		navbar.style.borderBottomColor = `rgba(255, 255, 255, ${borderAlpha.toFixed(3)})`;
+		navbar.style.boxShadow = progress > 0.08 ? `0 8px 28px rgba(0, 0, 0, ${shadowAlpha.toFixed(3)})` : 'none';
+		navbar.style.backdropFilter = progress > 0.05 ? `blur(${(10 * progress).toFixed(1)}px)` : 'none';
+	};
+
+	const applyMobileMenuTone = () => {
+		if (!menu) return;
+		const progress = Math.min(window.scrollY / 180, 1);
+		const bgAlpha = 0.72 + (0.23 * progress);
+		const borderAlpha = 0.20 + (0.30 * progress);
+		menu.style.backgroundColor = `rgba(9, 13, 18, ${bgAlpha.toFixed(3)})`;
+		menu.style.borderLeftColor = `rgba(244, 180, 0, ${borderAlpha.toFixed(3)})`;
+		menu.style.backdropFilter = `blur(${(2 + 10 * progress).toFixed(1)}px)`;
+	};
+
+	const setNavbarVisibility = () => {
+		if (!navbar) return;
+		if (menu?.classList.contains('translate-x-0')) {
+			navbar.classList.remove('-translate-y-full');
+			navbar.classList.add('translate-y-0');
+			return;
+		}
+		if (window.scrollY <= 20) {
+			navbar.classList.remove('-translate-y-full');
+			navbar.classList.add('translate-y-0');
+			return;
+		}
+		if (window.scrollY > lastScrollY) {
+			navbar.classList.add('-translate-y-full');
+			navbar.classList.remove('translate-y-0');
+		} else {
+			navbar.classList.remove('-translate-y-full');
+			navbar.classList.add('translate-y-0');
+		}
+	};
+
+	const handleNavbarState = () => {
+		if (window.scrollY > 80) {
+			navbar?.classList.add('py-3');
+			navbar?.classList.remove('py-5');
+		} else {
+			navbar?.classList.remove('py-3');
+			navbar?.classList.add('py-5');
+		}
+		applyNavbarTone();
+		applyMobileMenuTone();
+		setNavbarVisibility();
+		lastScrollY = window.scrollY;
+	};
+
+	closeMenu();
+	handleNavbarState();
+	window.addEventListener('scroll', handleNavbarState);
+	window.addEventListener('resize', () => {
+		if (window.innerWidth >= 1024) closeMenu();
+	});
+</script>

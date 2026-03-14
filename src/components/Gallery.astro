@@ -1,0 +1,51 @@
+---
+const projects = [
+	{ title: 'Edificio Comercial Lima Centro', category: 'Construcción Civil', img: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=600&q=80' },
+	{ title: 'Planta Procesadora Callao', category: 'Mantenimiento Industrial', img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80' },
+	{ title: 'Remodelación Oficinas San Isidro', category: 'Acabados', img: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80' },
+	{ title: 'Instalación Eléctrica Industrial', category: 'Inst. Eléctricas', img: 'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=600&q=80' },
+	{ title: 'Movimiento de Tierras Arequipa', category: 'Mov. de Tierras', img: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=600&q=80' },
+	{ title: 'Nave Industrial Lurín', category: 'Construcción Civil', img: 'https://images.unsplash.com/photo-1590274853856-f22d5ee3d228?auto=format&fit=crop&w=600&q=80' },
+	{ title: 'Señalización Mina Cajamarca', category: 'Seguridad', img: 'https://images.unsplash.com/photo-1517089596392-fb9a9033e05b?auto=format&fit=crop&w=600&q=80' },
+	{ title: 'Centro Comercial Trujillo', category: 'Construcción Civil', img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80' },
+];
+---
+
+<section class="py-20 px-6 bg-white">
+	<div class="max-w-7xl mx-auto">
+		<div class="text-center mb-14 gs-fade-up">
+			<span class="inline-block text-xs font-bold text-secondary uppercase tracking-widest bg-secondary/10 px-4 py-1.5 rounded-full mb-3">Portafolio</span>
+			<h2 class="font-display text-3xl md:text-4xl lg:text-5xl text-primary mb-4">Proyectos Destacados</h2>
+			<div class="gs-line w-15 h-[3px] bg-secondary mx-auto rounded-full mb-4"></div>
+			<p class="text-muted text-lg max-w-[600px] mx-auto">
+				Conoce algunos de los proyectos que demuestran nuestra capacidad y compromiso con la excelencia.
+			</p>
+		</div>
+		<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 gs-stagger">
+			{projects.map((p) => (
+				<div class="group relative aspect-[3/4] rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-400">
+					<img src={p.img} alt={p.title} class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
+					<div class="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/30 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-400"></div>
+					<div class="absolute inset-x-0 bottom-0 p-5 translate-y-2 group-hover:translate-y-0 transition-transform duration-400">
+						<span class="inline-block text-[0.65rem] font-bold text-secondary bg-secondary/20 px-3 py-0.5 rounded-full uppercase tracking-wide mb-2">{p.category}</span>
+						<h3 class="text-white font-bold text-base leading-snug">{p.title}</h3>
+					</div>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
+<!-- CTA -->
+<section class="py-16 px-6 bg-surface">
+	<div class="max-w-4xl mx-auto text-center gs-fade-up">
+		<h2 class="font-display text-2xl md:text-3xl text-primary mb-3">¿Tienes un proyecto en mente?</h2>
+		<p class="text-muted text-lg mb-8 max-w-[500px] mx-auto">
+			Conversemos sobre cómo podemos ayudarte a hacerlo realidad.
+		</p>
+		<a href="/contacto" class="inline-flex items-center gap-2 px-8 py-4 rounded-md font-semibold text-base bg-primary text-white hover:bg-primary-light hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300">
+			Contáctanos
+			<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+		</a>
+	</div>
+</section>

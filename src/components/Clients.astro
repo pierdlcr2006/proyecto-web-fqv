@@ -1,0 +1,343 @@
+---
+const clients = [
+	{
+		name: 'UNACEM',
+		sector: 'Industria',
+		city: 'Lima',
+		image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1200&q=80',
+	},
+	{
+		name: 'Alicorp',
+		sector: 'Industria',
+		city: 'Callao',
+		image: 'https://images.unsplash.com/photo-1567789884554-0b844b597180?auto=format&fit=crop&w=1200&q=80',
+	},
+	{
+		name: 'Backus',
+		sector: 'Industria',
+		city: 'Ate',
+		image: 'https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1200&q=80',
+	},
+	{
+		name: 'Ferreyros',
+		sector: 'Construccion',
+		city: 'Lima',
+		image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80',
+	},
+	{
+		name: 'Minsur',
+		sector: 'Mineria',
+		city: 'Puno',
+		image: 'https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=1200&q=80',
+	},
+	{
+		name: 'Volcan',
+		sector: 'Mineria',
+		city: 'Junin',
+		image: 'https://images.unsplash.com/photo-1541976844346-f18aeac57b06?auto=format&fit=crop&w=1200&q=80',
+	},
+	{
+		name: 'Molycop',
+		sector: 'Mineria',
+		city: 'Lima',
+		image: 'https://images.unsplash.com/photo-1489514354504-1653aa90e34f?auto=format&fit=crop&w=1200&q=80',
+	},
+	{
+		name: 'Gloria',
+		sector: 'Industria',
+		city: 'Lurin',
+		image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=1200&q=80',
+	},
+	{
+		name: 'Buenaventura',
+		sector: 'Mineria',
+		city: 'Lima',
+		image: 'https://images.unsplash.com/photo-1531685250784-7569952593d2?auto=format&fit=crop&w=1200&q=80',
+	},
+	{
+		name: 'Quimpac',
+		sector: 'Industria',
+		city: 'Lima',
+		image: 'https://images.unsplash.com/photo-1496247749665-49cf5b1022e9?auto=format&fit=crop&w=1200&q=80',
+	},
+	{
+		name: 'Molitalia',
+		sector: 'Industria',
+		city: 'Lima',
+		image: 'https://images.unsplash.com/photo-1513828742140-ccaa28f3eda0?auto=format&fit=crop&w=1200&q=80',
+	},
+	{
+		name: 'Sodexo',
+		sector: 'Servicios',
+		city: 'Nacional',
+		image: 'https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?auto=format&fit=crop&w=1200&q=80',
+	},
+	{
+		name: 'Aceros Arequipa',
+		sector: 'Industria',
+		city: 'Arequipa',
+		image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
+	},
+	{
+		name: 'El Brocal',
+		sector: 'Mineria',
+		city: 'Cerro de Pasco',
+		image: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1200&q=80',
+	},
+	{
+		name: 'Plus Petrol',
+		sector: 'Energia',
+		city: 'Talara',
+		image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1200&q=80',
+	},
+	{
+		name: 'Quimica Suiza',
+		sector: 'Industria',
+		city: 'Lima',
+		image: 'https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=1200&q=80',
+	},
+];
+
+const operations = [
+	{
+		title: 'Parada de planta controlada',
+		client: 'UNACEM',
+		image: 'https://images.unsplash.com/photo-1590479773265-7464e5d48118?auto=format&fit=crop&w=1400&q=80',
+	},
+	{
+		title: 'Montaje de estructura metalica',
+		client: 'Ferreyros',
+		image: 'https://images.unsplash.com/photo-1599707254554-027aeb4deacd?auto=format&fit=crop&w=1400&q=80',
+	},
+	{
+		title: 'Maniobra en mina',
+		client: 'Minsur',
+		image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1400&q=80',
+	},
+	{
+		title: 'Intervencion electrica',
+		client: 'Plus Petrol',
+		image: 'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=1400&q=80',
+	},
+	{
+		title: 'Soporte industrial 24/7',
+		client: 'Alicorp',
+		image: 'https://images.unsplash.com/photo-1570158268183-d296b2892211?auto=format&fit=crop&w=1400&q=80',
+	},
+];
+
+const clientFilters = ['Todos', ...new Set(clients.map((client) => client.sector))];
+const clientsDetailed = clients.map((client) => ({
+	...client,
+	initials: client.name
+		.split(/\s+/)
+		.map((word) => word[0])
+		.join('')
+		.slice(0, 2),
+}));
+---
+
+<section class="py-20 px-6 bg-white">
+	<div class="max-w-7xl mx-auto grid lg:grid-cols-[1.05fr_0.95fr] gap-8 items-center">
+		<div class="rounded-3xl overflow-hidden border border-primary/15 h-[360px] md:h-[440px]">
+			<img
+				src="https://images.unsplash.com/photo-1541976844346-f18aeac57b06?auto=format&fit=crop&w=1600&q=80"
+				alt="Operaciones con clientes en campo"
+				class="w-full h-full object-cover"
+				loading="lazy"
+			/>
+		</div>
+		<div>
+			<span class="inline-block text-xs font-bold text-secondary uppercase tracking-widest bg-secondary/10 px-4 py-1.5 rounded-full mb-3">Clientes FQV</span>
+			<h2 class="font-display text-4xl md:text-5xl text-primary leading-none tracking-wide mb-4">Mas imagen, menos discurso</h2>
+			<p class="text-muted text-lg leading-relaxed mb-6">Mostramos operaciones reales, equipos en campo y resultados visibles para cada cliente.</p>
+			<div class="grid grid-cols-3 gap-3">
+				<div class="rounded-xl border border-gray-200 bg-surface px-4 py-4 text-center">
+					<p class="text-3xl font-black text-secondary leading-none">{clients.length}+</p>
+					<p class="text-[0.62rem] uppercase tracking-widest text-muted mt-1">Clientes</p>
+				</div>
+				<div class="rounded-xl border border-gray-200 bg-surface px-4 py-4 text-center">
+					<p class="text-3xl font-black text-secondary leading-none">500+</p>
+					<p class="text-[0.62rem] uppercase tracking-widest text-muted mt-1">Proyectos</p>
+				</div>
+				<div class="rounded-xl border border-gray-200 bg-surface px-4 py-4 text-center">
+					<p class="text-3xl font-black text-secondary leading-none">24/7</p>
+					<p class="text-[0.62rem] uppercase tracking-widest text-muted mt-1">Cobertura</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="py-20 px-6 bg-surface">
+	<div class="max-w-7xl mx-auto rounded-3xl border border-gray-200 bg-white p-6 md:p-10 shadow-sm">
+		<div class="mb-8 text-center">
+			<span class="inline-block text-xs font-bold text-secondary uppercase tracking-widest bg-secondary/10 px-4 py-1.5 rounded-full mb-3">Portafolio de Clientes</span>
+			<h3 class="font-display text-4xl md:text-5xl text-primary leading-none tracking-wide">Empresas que operan con FQV</h3>
+		</div>
+
+		<div class="flex flex-nowrap md:flex-wrap gap-2.5 justify-start md:justify-center mb-8 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+			{clientFilters.map((filter, index) => (
+				<button
+					type="button"
+					class:list={[
+						'client-filter whitespace-nowrap px-4 py-2 rounded-full border text-sm font-semibold transition-colors',
+						index === 0
+							? 'bg-primary text-white border-primary'
+							: 'bg-white text-primary border-primary/20 hover:border-primary/40',
+					]}
+					data-filter={filter}
+				>
+					{filter}
+				</button>
+			))}
+		</div>
+
+		<div id="clientsGrid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+			{clientsDetailed.map((client) => (
+				<article
+					class="client-card group rounded-2xl overflow-hidden border border-gray-200 bg-white hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
+					data-sector={client.sector}
+				>
+					<div class="h-40 overflow-hidden relative">
+						<img src={client.image} alt={`Operacion para ${client.name}`} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+						<div class="absolute inset-0 bg-gradient-to-t from-dark/65 via-dark/10 to-transparent"></div>
+						<span class="absolute top-3 left-3 text-[0.62rem] font-bold text-primary bg-secondary px-2.5 py-1 rounded-full uppercase tracking-wide">{client.sector}</span>
+					</div>
+					<div class="p-4">
+						<div class="flex items-center gap-3 mb-2">
+							<div class="w-9 h-9 rounded-full bg-primary text-white text-xs font-black flex items-center justify-center shrink-0">{client.initials}</div>
+							<div class="min-w-0">
+								<p class="text-sm font-extrabold tracking-wide text-primary truncate">{client.name}</p>
+								<p class="text-[0.62rem] uppercase tracking-wider text-muted">{client.city}</p>
+							</div>
+						</div>
+						<p class="text-xs text-muted">Operacion tecnica con estandares altos de seguridad y cumplimiento.</p>
+					</div>
+				</article>
+			))}
+		</div>
+		<p id="clientsEmpty" class="hidden mt-6 text-center text-sm text-muted font-medium">No hay clientes visibles en esa categoria.</p>
+	</div>
+</section>
+
+<section class="py-20 px-6 bg-white">
+	<div class="max-w-7xl mx-auto">
+		<div class="flex items-end justify-between gap-4 mb-6">
+			<div>
+				<span class="inline-block text-xs font-bold text-secondary uppercase tracking-widest bg-secondary/10 px-4 py-1.5 rounded-full mb-3">Evidencia Visual</span>
+				<h3 class="font-display text-4xl md:text-5xl text-primary leading-none tracking-wide">Operaciones con clientes</h3>
+			</div>
+			<div class="hidden md:flex gap-2">
+				<button id="clientsOpsPrev" class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-primary/20 text-primary hover:bg-primary hover:text-white transition-colors" aria-label="Operacion anterior">
+					<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+				</button>
+				<button id="clientsOpsNext" class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white hover:bg-primary-light transition-colors" aria-label="Siguiente operacion">
+					<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+				</button>
+			</div>
+		</div>
+
+		<div class="overflow-hidden">
+			<div id="clientsOpsTrack" class="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+				{operations.map((item) => (
+					<article class="snap-start shrink-0 w-[84%] sm:w-[54%] lg:w-[32%] rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-sm">
+						<div class="h-60 overflow-hidden relative">
+							<img src={item.image} alt={item.title} class="w-full h-full object-cover" loading="lazy" />
+							<div class="absolute inset-0 bg-gradient-to-t from-dark/70 via-dark/5 to-transparent"></div>
+							<div class="absolute left-4 right-4 bottom-4">
+								<p class="text-sm font-extrabold text-white">{item.title}</p>
+								<p class="text-[0.68rem] uppercase tracking-wider text-white/75">{item.client}</p>
+							</div>
+						</div>
+					</article>
+				))}
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="relative py-20 px-6 overflow-hidden">
+	<img
+		src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=1800&q=80"
+		alt="Cierre de colaboracion con cliente"
+		class="absolute inset-0 w-full h-full object-cover"
+		loading="lazy"
+	/>
+	<div class="absolute inset-0 bg-primary/75"></div>
+	<div class="relative z-10 max-w-7xl mx-auto text-center">
+		<h3 class="font-display text-3xl md:text-4xl text-white leading-none tracking-wide mb-3">Tu operacion puede ser la siguiente</h3>
+		<p class="text-white/80 max-w-[620px] mx-auto mb-7">Coordinamos alcance, tiempos y arranque con equipos listos para campo.</p>
+		<a href="/contacto" class="inline-flex items-center justify-center px-7 py-3.5 rounded-md font-semibold bg-secondary text-primary hover:bg-secondary-light transition-all duration-300">Solicitar propuesta</a>
+	</div>
+</section>
+
+<script>
+	const filterButtons = Array.from(document.querySelectorAll('.client-filter'));
+	const clientCards = Array.from(document.querySelectorAll('.client-card'));
+	const emptyState = document.getElementById('clientsEmpty');
+
+	const opsTrack = document.getElementById('clientsOpsTrack');
+	const opsPrev = document.getElementById('clientsOpsPrev');
+	const opsNext = document.getElementById('clientsOpsNext');
+
+	const initCarousel = (track, prev, next, delay = 4700) => {
+		if (!track) return;
+
+		const getStep = () => {
+			const firstCard = track.querySelector('article');
+			if (!firstCard) return 300;
+			const style = getComputedStyle(track);
+			const gap = parseFloat(style.columnGap || style.gap || '16');
+			return firstCard.getBoundingClientRect().width + gap;
+		};
+
+		const slide = (direction) => {
+			track.scrollBy({ left: getStep() * direction, behavior: 'smooth' });
+		};
+
+		prev?.addEventListener('click', () => slide(-1));
+		next?.addEventListener('click', () => slide(1));
+
+		let autoplay = setInterval(() => slide(1), delay);
+		const stop = () => clearInterval(autoplay);
+		const start = () => {
+			stop();
+			autoplay = setInterval(() => slide(1), delay);
+		};
+
+		track.addEventListener('mouseenter', stop);
+		track.addEventListener('mouseleave', start);
+		track.addEventListener('touchstart', stop, { passive: true });
+		track.addEventListener('touchend', start, { passive: true });
+	};
+
+	const applyFilter = (filter) => {
+		let visibleCount = 0;
+		clientCards.forEach((card) => {
+			const sector = card.getAttribute('data-sector');
+			const visible = filter === 'Todos' || sector === filter;
+			card.classList.toggle('hidden', !visible);
+			if (visible) visibleCount += 1;
+		});
+		emptyState?.classList.toggle('hidden', visibleCount > 0);
+	};
+
+	filterButtons.forEach((button) => {
+		button.addEventListener('click', () => {
+			const filter = button.getAttribute('data-filter') || 'Todos';
+
+			filterButtons.forEach((btn) => {
+				btn.classList.remove('bg-primary', 'text-white', 'border-primary');
+				btn.classList.add('bg-white', 'text-primary', 'border-primary/20');
+			});
+
+			button.classList.remove('bg-white', 'text-primary', 'border-primary/20');
+			button.classList.add('bg-primary', 'text-white', 'border-primary');
+
+			applyFilter(filter);
+		});
+	});
+
+	initCarousel(opsTrack, opsPrev, opsNext, 5000);
+</script>

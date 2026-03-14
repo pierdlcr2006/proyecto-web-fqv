@@ -1,0 +1,377 @@
+---
+const serviceBlocks = [
+	{
+		step: '01',
+		title: 'Ingeniería de Izaje',
+		tag: 'Método FQV',
+		desc: 'Planificación técnica de maniobras con análisis de carga, rutas, interferencias y control de riesgos.',
+		outcome: 'Riesgo operativo controlado',
+	},
+	{
+		step: '02',
+		title: 'Operación en Campo',
+		tag: 'Ejecución segura',
+		desc: 'Personal técnico y operadores certificados para intervenciones programadas y servicios de emergencia.',
+		outcome: 'Ejecución estable y segura',
+	},
+	{
+		step: '03',
+		title: 'Cierre y Trazabilidad',
+		tag: 'Control total',
+		desc: 'Reportes operativos, verificación de calidad y documentación para continuidad de tus operaciones.',
+		outcome: 'Evidencia técnica entregable',
+	},
+];
+
+const brandPillars = [
+	{
+		title: 'Seguridad Primero',
+		desc: 'Protocolos SST activos antes, durante y después de cada maniobra.',
+		value: 'Cero improvisación',
+	},
+	{
+		title: 'Decisión Técnica',
+		desc: 'Cada servicio se define con datos de campo y evaluación de criticidad.',
+		value: 'Plan validado',
+	},
+	{
+		title: 'Respuesta Ágil',
+		desc: 'Estructura operativa para atender trabajos programados y urgencias.',
+		value: '24/7',
+	},
+	{
+		title: 'Cumplimiento Real',
+		desc: 'Control por hitos y comunicación continua con cliente y supervisión.',
+		value: 'Plazos protegidos',
+	},
+];
+
+const fleetTypes = [
+	'Izajes industriales de alto tonelaje',
+	'Montaje de estructuras y equipos',
+	'Maniobras para energía y minería',
+	'Traslados especiales y logística técnica',
+	'Trabajos en altura con supervisión SST',
+	'Soporte operativo para continuidad de planta',
+];
+
+const latestProjects = [
+	{
+		title: 'Montaje de torre de proceso',
+		sector: 'Minería',
+		location: 'Arequipa',
+		image: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=1200&q=80',
+	},
+	{
+		title: 'Instalación de puente grúa',
+		sector: 'Industria',
+		location: 'Lima',
+		image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1200&q=80',
+	},
+	{
+		title: 'Izaje de equipos HVAC',
+		sector: 'Construcción',
+		location: 'Trujillo',
+		image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80',
+	},
+	{
+		title: 'Maniobra de transformador',
+		sector: 'Energía',
+		location: 'Ica',
+		image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1200&q=80',
+	},
+	{
+		title: 'Elevación en planta logística',
+		sector: 'Logística',
+		location: 'Callao',
+		image: 'https://images.unsplash.com/photo-1541976844346-f18aeac57b06?auto=format&fit=crop&w=1200&q=80',
+	},
+];
+---
+
+<section class="relative min-h-screen flex items-center overflow-hidden bg-dark text-white" id="inicio">
+	<div class="absolute inset-0">
+		<img
+			src="https://images.unsplash.com/photo-1599707254554-027aeb4deacd?auto=format&fit=crop&w=2000&q=80"
+			alt="Operación técnica de grúa en campo"
+			class="w-full h-full object-cover"
+			loading="eager"
+		/>
+		<div class="absolute inset-0 bg-gradient-to-r from-dark/95 via-dark/84 to-dark/55"></div>
+		<div class="absolute inset-0 opacity-25 [background:repeating-linear-gradient(-45deg,transparent,transparent_12px,rgba(244,180,0,0.12)_12px,rgba(244,180,0,0.12)_24px)]"></div>
+	</div>
+
+	<div class="hero-content relative z-10 max-w-7xl mx-auto px-6 pt-38 pb-20 grid lg:grid-cols-[1.15fr_0.85fr] gap-10 items-end">
+		<div>
+			<span class="hero-badge inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/18 border border-secondary/35 text-secondary text-xs tracking-widest uppercase font-bold">
+				Sello Operacional FQV
+			</span>
+			<h1 class="hero-title font-display text-[3rem] sm:text-[3.9rem] md:text-[5rem] leading-[0.94] mt-5 mb-6 tracking-wide">
+				Ingeniería y maniobras<br />
+				<span class="text-secondary">con control real</span>
+			</h1>
+			<p class="hero-description text-lg md:text-xl text-white/82 max-w-[640px] leading-relaxed mb-8">
+				En FQV transformamos operaciones críticas en ejecuciones seguras y medibles.
+				Planificamos, ejecutamos y cerramos cada servicio con trazabilidad técnica.
+			</p>
+			<div class="flex flex-wrap gap-2.5 mb-8">
+				{['Construcción', 'Minería', 'Energía', 'Industria', 'Logística'].map((sector) => (
+					<span class="text-[0.7rem] uppercase tracking-wider font-bold px-3 py-1.5 rounded-full border border-white/20 bg-white/8">{sector}</span>
+				))}
+			</div>
+			<div class="hero-actions flex flex-wrap gap-4 mb-9">
+				<a href="/contacto" class="inline-flex items-center justify-center px-8 py-3.5 rounded-md text-base font-extrabold text-primary bg-secondary hover:bg-secondary-light hover:-translate-y-0.5 transition-all duration-300">
+					Solicitar Cotización
+				</a>
+				<a href="/proyectos" class="inline-flex items-center justify-center px-8 py-3.5 rounded-md text-base font-bold border-2 border-white/60 text-white hover:border-white hover:bg-white hover:text-primary transition-all duration-300">
+					Ver Proyectos
+				</a>
+			</div>
+			<div class="hero-stats grid sm:grid-cols-3 gap-3 md:gap-4">
+				{[
+					{ n: '18+', t: 'Años en operación' },
+					{ n: '3200+', t: 'Servicios ejecutados' },
+					{ n: '24/7', t: 'Respuesta técnica' },
+				].map((item) => (
+					<div class="stat bg-white/7 border border-white/15 rounded-xl p-4 backdrop-blur-sm">
+						<span class="block text-3xl font-extrabold text-secondary leading-none mb-1">{item.n}</span>
+						<span class="text-xs uppercase tracking-wide text-white/72">{item.t}</span>
+					</div>
+				))}
+			</div>
+		</div>
+
+		<div class="gs-fade-right bg-white/96 text-primary rounded-2xl p-7 shadow-2xl border-2 border-secondary/40">
+			<p class="text-xs uppercase tracking-[0.18em] text-primary/60 font-bold mb-3">Manifiesto FQV</p>
+			<h2 class="font-display text-4xl leading-none tracking-wide mb-4">Método 4F</h2>
+			<ul class="space-y-3.5 mb-7">
+				{[
+					'Field Check: diagnóstico técnico en campo.',
+					'Flow Plan: estrategia operativa y ruta crítica.',
+					'Full Execute: ejecución con control SST y calidad.',
+					'Final Trace: reporte, cierre y trazabilidad documental.',
+				].map((item, index) => (
+					<li class="flex items-start gap-3 text-sm font-semibold text-primary/90">
+						<span class="mt-[2px] w-5 h-5 rounded-full bg-secondary text-primary flex items-center justify-center text-[0.65rem] font-black">{index + 1}</span>
+						<span>{item}</span>
+					</li>
+				))}
+			</ul>
+			<div class="rounded-xl bg-primary text-white p-4 mb-5">
+				<p class="text-[0.7rem] uppercase tracking-widest text-white/70 mb-1">Cobertura</p>
+				<p class="text-sm font-semibold">Operación nacional con coordinación técnica en menos de 24h.</p>
+			</div>
+			<a href="tel:+51999999999" class="inline-flex w-full items-center justify-center px-5 py-3 rounded-md bg-primary text-white font-bold hover:bg-primary-light transition-colors duration-300">
+				Llámanos: +51 999 999 999
+			</a>
+		</div>
+	</div>
+</section>
+
+<section class="py-16 px-6 bg-primary text-white border-y border-white/10">
+	<div class="max-w-7xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+		{brandPillars.map((pillar) => (
+			<article class="gs-fade-up rounded-xl border border-white/15 bg-white/5 p-5">
+				<p class="text-[0.65rem] font-bold uppercase tracking-widest text-secondary mb-2">{pillar.value}</p>
+				<h3 class="text-lg font-bold mb-1">{pillar.title}</h3>
+				<p class="text-sm text-white/75 leading-relaxed">{pillar.desc}</p>
+			</article>
+		))}
+	</div>
+</section>
+
+<section class="py-20 px-6 bg-white">
+	<div class="max-w-7xl mx-auto">
+		<div class="text-center mb-12 gs-fade-up">
+			<span class="inline-block text-xs font-bold text-secondary uppercase tracking-widest bg-secondary/15 px-4 py-1.5 rounded-full mb-4">Nuestro Enfoque</span>
+			<h2 class="font-display text-5xl md:text-6xl text-primary leading-none tracking-wide mb-4">Cómo trabaja FQV</h2>
+			<p class="text-muted text-lg max-w-[760px] mx-auto">No es solo movilizar equipos. Es una metodología completa para ejecutar con seguridad, control y continuidad operativa.</p>
+		</div>
+		<div class="grid lg:grid-cols-[0.95fr_1.05fr] gap-7 items-stretch">
+			<article class="gs-fade-left rounded-2xl overflow-hidden border border-primary/15 bg-gradient-to-br from-primary to-dark text-white p-8 md:p-9">
+				<span class="inline-flex text-[0.65rem] font-bold uppercase tracking-wider bg-secondary text-primary px-3 py-1 rounded-full mb-4">Framework FQV</span>
+				<h3 class="font-display text-4xl md:text-5xl leading-none tracking-wide mb-4">De diagnóstico a entrega sin improvisar</h3>
+				<p class="text-white/80 leading-relaxed mb-6">
+					Estandarizamos cada etapa para proteger tiempo, seguridad y costo operativo.
+					Cada servicio tiene un responsable técnico y un cierre documentado.
+				</p>
+				<ul class="space-y-3 mb-7">
+					{[
+						'Análisis de criticidad y condiciones reales de campo.',
+						'Ejecución supervisada con control SST y comunicación activa.',
+						'Entrega con evidencia técnica y recomendaciones de continuidad.',
+					].map((item) => (
+						<li class="flex items-start gap-3 text-sm text-white/90">
+							<span class="mt-[2px] w-5 h-5 rounded-full bg-secondary text-primary flex items-center justify-center text-[0.65rem] font-black">✓</span>
+							<span>{item}</span>
+						</li>
+					))}
+				</ul>
+				<a href="/servicios" class="inline-flex items-center gap-2 text-sm font-bold text-secondary hover:text-secondary-light transition-colors">
+					Ver metodología completa
+					<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+				</a>
+			</article>
+
+			<div class="gs-stagger grid sm:grid-cols-2 gap-5">
+				{serviceBlocks.map((service, index) => (
+					<a
+						href="/servicios"
+						class:list={[
+							'group rounded-2xl border border-gray-200 p-6 bg-surface hover:-translate-y-1 hover:shadow-xl transition-all duration-300',
+							{ 'sm:col-span-2 bg-white border-primary/15': index === 2 },
+						]}
+					>
+						<div class="flex items-center justify-between mb-4">
+							<span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white text-xs font-black">{service.step}</span>
+							<span class="inline-block text-[0.65rem] font-bold tracking-wider uppercase bg-primary text-white px-3 py-1 rounded-full">{service.tag}</span>
+						</div>
+						<h3 class="text-2xl font-display text-primary leading-none tracking-wide mb-2">{service.title}</h3>
+						<p class="text-sm text-muted leading-relaxed mb-4">{service.desc}</p>
+						<p class="text-[0.72rem] uppercase tracking-wide font-bold text-secondary mb-4">{service.outcome}</p>
+						<span class="inline-flex items-center gap-2 text-sm font-bold text-primary group-hover:text-secondary transition-colors">
+							Más información
+							<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+						</span>
+					</a>
+				))}
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="py-20 px-6 bg-surface">
+	<div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+		<div class="gs-fade-left">
+			<span class="inline-block text-xs font-bold text-secondary uppercase tracking-widest bg-secondary/15 px-4 py-1.5 rounded-full mb-4">Flota y Operación</span>
+			<h2 class="font-display text-5xl md:text-6xl text-primary leading-none tracking-wide mb-5">Listos Para Tu Proyecto</h2>
+			<p class="text-muted text-lg leading-relaxed mb-7">
+				Combinamos equipos, personal técnico y supervisión en campo para ejecutar maniobras críticas
+				sin improvisaciones.
+			</p>
+			<div class="grid sm:grid-cols-2 gap-3">
+				{fleetTypes.map((item) => (
+					<div class="bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-semibold text-primary flex items-center gap-2.5">
+						<span class="w-2.5 h-2.5 bg-secondary rounded-full"></span>
+						{item}
+					</div>
+				))}
+			</div>
+		</div>
+		<div class="gs-fade-right rounded-2xl overflow-hidden shadow-2xl h-[420px]">
+			<img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1400&q=80" alt="Camión grúa en operación" class="w-full h-full object-cover" loading="lazy" />
+		</div>
+	</div>
+</section>
+
+<section class="py-20 px-6 bg-white">
+	<div class="max-w-7xl mx-auto">
+		<div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
+			<div class="gs-fade-left">
+				<span class="inline-block text-xs font-bold text-secondary uppercase tracking-widest bg-secondary/15 px-4 py-1.5 rounded-full mb-4">Portafolio Reciente</span>
+				<h2 class="font-display text-5xl md:text-6xl text-primary leading-none tracking-wide mb-3">Últimos Proyectos</h2>
+				<p class="text-muted text-lg max-w-[620px]">Trabajos recientes ejecutados con planificación técnica, seguridad operativa y tiempos de respuesta ágiles.</p>
+			</div>
+			<div class="hidden md:flex gap-3">
+				<button id="projectsPrev" class="inline-flex items-center justify-center w-11 h-11 rounded-full border border-primary/20 text-primary hover:bg-primary hover:text-white transition-colors" aria-label="Proyecto anterior">
+					<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+				</button>
+				<button id="projectsNext" class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-primary text-white hover:bg-primary-light transition-colors" aria-label="Siguiente proyecto">
+					<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+				</button>
+			</div>
+		</div>
+
+		<div id="projectsCarousel" class="overflow-hidden">
+			<div id="projectsTrack" class="flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+				{latestProjects.map((project) => (
+					<article class="snap-start shrink-0 w-[85%] sm:w-[52%] lg:w-[32%] rounded-2xl overflow-hidden bg-surface border border-gray-200 shadow-sm">
+						<div class="h-56 relative overflow-hidden">
+							<img src={project.image} alt={project.title} class="w-full h-full object-cover" loading="lazy" />
+							<div class="absolute inset-0 bg-gradient-to-t from-dark/70 via-dark/10 to-transparent"></div>
+							<span class="absolute top-4 left-4 inline-block text-[0.65rem] font-bold text-primary bg-secondary px-3 py-1 rounded-full uppercase tracking-wide">{project.sector}</span>
+						</div>
+						<div class="p-5">
+							<h3 class="text-xl font-display text-primary leading-none tracking-wide mb-2">{project.title}</h3>
+							<p class="text-sm text-muted mb-4">{project.location}</p>
+							<a href="/proyectos" class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-secondary transition-colors">
+								Ver detalle
+								<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+							</a>
+						</div>
+					</article>
+				))}
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="py-20 px-6 bg-white">
+	<div class="max-w-7xl mx-auto text-center">
+		<div class="gs-fade-up mb-10">
+			<span class="inline-block text-xs font-bold text-secondary uppercase tracking-widest bg-secondary/15 px-4 py-1.5 rounded-full mb-4">Confianza de Clientes</span>
+			<h2 class="font-display text-5xl md:text-6xl text-primary leading-none tracking-wide mb-4">Sectores Atendidos</h2>
+		</div>
+		<div class="gs-stagger grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-12">
+			{['Minería', 'Construcción', 'Energía', 'Logística', 'Infraestructura', 'Industria'].map((sector) => (
+				<div class="h-20 rounded-xl border border-gray-200 bg-surface flex items-center justify-center text-sm font-bold text-primary/85 tracking-wide">
+					{sector}
+				</div>
+			))}
+		</div>
+		<a href="/clientes" class="inline-flex items-center justify-center px-8 py-3.5 rounded-md font-bold bg-primary text-white hover:bg-primary-light transition-colors duration-300">
+			Ver Experiencia y Casos
+		</a>
+	</div>
+</section>
+
+<section class="py-20 px-6 bg-primary text-white">
+	<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+		<div class="gs-fade-left text-center md:text-left">
+			<h2 class="font-display text-5xl md:text-6xl leading-none tracking-wide mb-3">¿Necesitas una grúa hoy?</h2>
+			<p class="text-white/75 text-lg">Respuesta rápida para proyectos programados y atenciones de emergencia.</p>
+		</div>
+		<div class="gs-fade-right flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+			<a href="/contacto" class="inline-flex items-center justify-center px-7 py-3.5 rounded-md font-extrabold bg-secondary text-primary hover:bg-secondary-light transition-colors duration-300">
+				Cotizar ahora
+			</a>
+			<a href="tel:+51999999999" class="inline-flex items-center justify-center px-7 py-3.5 rounded-md border-2 border-white/60 font-bold hover:bg-white hover:text-primary transition-all duration-300">
+				+51 999 999 999
+			</a>
+		</div>
+	</div>
+</section>
+
+<script>
+	const track = document.getElementById('projectsTrack');
+	const prevBtn = document.getElementById('projectsPrev');
+	const nextBtn = document.getElementById('projectsNext');
+
+	if (track && prevBtn && nextBtn) {
+		const getStep = () => {
+			const firstCard = track.querySelector('article');
+			if (!firstCard) return 300;
+			const gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || '20');
+			return firstCard.getBoundingClientRect().width + gap;
+		};
+
+		const slide = (direction) => {
+			track.scrollBy({ left: getStep() * direction, behavior: 'smooth' });
+		};
+
+		prevBtn.addEventListener('click', () => slide(-1));
+		nextBtn.addEventListener('click', () => slide(1));
+
+		let autoplay = setInterval(() => slide(1), 4500);
+		const stop = () => clearInterval(autoplay);
+		const start = () => {
+			stop();
+			autoplay = setInterval(() => slide(1), 4500);
+		};
+
+		track.addEventListener('mouseenter', stop);
+		track.addEventListener('mouseleave', start);
+		track.addEventListener('touchstart', stop, { passive: true });
+		track.addEventListener('touchend', start, { passive: true });
+	}
+</script>

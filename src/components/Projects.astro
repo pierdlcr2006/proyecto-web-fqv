@@ -1,0 +1,166 @@
+---
+const groupedProjects = [
+	{
+		category: 'Construcción',
+		description: 'Montajes, estructuras metálicas y obras civiles para proyectos de gran escala.',
+		projects: [
+			{ title: 'Montaje de Estructuras Metálicas', location: 'Lima', year: '2025', image: 'https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1200&q=80' },
+			{ title: 'Ampliación de Nave Industrial', location: 'Callao', year: '2024', image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80' },
+			{ title: 'Obra Civil de Plataforma', location: 'Trujillo', year: '2025', image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=80' },
+		],
+	},
+	{
+		category: 'Minería',
+		description: 'Movimiento de tierras, soporte de planta y maniobras críticas en campo minero.',
+		projects: [
+			{ title: 'Movimiento de Tierras y Nivelación', location: 'Arequipa', year: '2025', image: 'https://images.unsplash.com/photo-1541976844346-f18aeac57b06?auto=format&fit=crop&w=1200&q=80' },
+			{ title: 'Mantenimiento de Faja Transportadora', location: 'Cusco', year: '2024', image: 'https://images.unsplash.com/photo-1621905252472-e8f4f2487dbd?auto=format&fit=crop&w=1200&q=80' },
+			{ title: 'Montaje de Equipos de Chancado', location: 'Junín', year: '2025', image: 'https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=1200&q=80' },
+		],
+	},
+	{
+		category: 'Energía e Industria',
+		description: 'Instalaciones eléctricas, mantenimiento industrial y maniobras de alta precisión.',
+		projects: [
+			{ title: 'Instalación de Redes Eléctricas', location: 'Ica', year: '2024', image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1200&q=80' },
+			{ title: 'Mantenimiento de Planta Cementera', location: 'Junín', year: '2025', image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80' },
+			{ title: 'Maniobra de Transformador de Potencia', location: 'Piura', year: '2024', image: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1200&q=80' },
+		],
+	},
+	{
+		category: 'Infraestructura y Seguridad',
+		description: 'Obras viales, accesos logísticos y sistemas de seguridad operativa en planta.',
+		projects: [
+			{ title: 'Obra Vial de Acceso Logístico', location: 'Trujillo', year: '2025', image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80' },
+			{ title: 'Implementación de Señalización SST', location: 'Piura', year: '2024', image: 'https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=1200&q=80' },
+			{ title: 'Reforzamiento de Patio de Maniobras', location: 'Lima', year: '2025', image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80' },
+		],
+	},
+];
+---
+
+<section class="py-20 px-6 bg-white">
+	<div class="max-w-7xl mx-auto">
+		<div class="text-center mb-14 gs-fade-up">
+			<span class="inline-block text-xs font-bold text-secondary uppercase tracking-widest bg-secondary/10 px-4 py-1.5 rounded-full mb-3">Portafolio FQV</span>
+			<h2 class="font-display text-4xl md:text-5xl lg:text-6xl text-primary leading-none tracking-wide mb-4">Proyectos Divididos por Especialidad</h2>
+			<p class="text-muted text-lg max-w-[760px] mx-auto">Visualiza nuestros trabajos por sector para encontrar rápidamente casos similares a tu necesidad.</p>
+		</div>
+
+		<div class="space-y-14">
+			{groupedProjects.map((group) => (
+				<section class="gs-fade-up border border-gray-200 rounded-2xl overflow-hidden">
+					<div class="bg-surface px-6 md:px-8 py-6 border-b border-gray-200 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+						<div>
+							<span class="inline-block text-[0.65rem] font-bold text-primary bg-secondary px-3 py-1 rounded-full uppercase tracking-wide mb-2">{group.category}</span>
+							<h3 class="font-display text-3xl md:text-4xl text-primary leading-none tracking-wide">{group.category}</h3>
+						</div>
+						<p class="text-muted max-w-[560px]">{group.description}</p>
+					</div>
+
+					<div class="p-6 md:p-8" data-project-carousel>
+						<div class="flex items-center justify-between mb-4">
+							<p class="text-xs font-bold uppercase tracking-widest text-muted">Galería de Proyectos</p>
+							<div class="hidden md:flex gap-2">
+								<button data-prev class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-primary/20 text-primary hover:bg-primary hover:text-white transition-colors" aria-label="Proyecto anterior">
+									<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+								</button>
+								<button data-next class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white hover:bg-primary-light transition-colors" aria-label="Siguiente proyecto">
+									<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+								</button>
+							</div>
+						</div>
+
+						<div class="overflow-hidden">
+							<div data-track class="flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+								{group.projects.map((project) => (
+									<article class="group snap-start shrink-0 w-[88%] sm:w-[58%] lg:w-[48%] rounded-xl overflow-hidden border border-gray-200 bg-white shadow-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+										<div class="h-52 relative overflow-hidden">
+											<img src={project.image} alt={project.title} class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
+											<div class="absolute inset-0 bg-gradient-to-t from-dark/75 via-dark/10 to-transparent"></div>
+										</div>
+										<div class="p-4">
+											<h4 class="text-lg font-bold text-primary mb-2 leading-snug">{project.title}</h4>
+											<p class="text-xs uppercase tracking-wide text-muted mb-3">{project.location} · {project.year}</p>
+											<a href="/contacto" class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-secondary transition-colors">
+												Solicitar servicio similar
+												<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+											</a>
+										</div>
+									</article>
+								))}
+							</div>
+						</div>
+					</div>
+				</section>
+			))}
+		</div>
+	</div>
+</section>
+
+<section class="py-16 px-6 bg-surface">
+	<div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-6">
+		{[
+			{ value: '500', suffix: '+', label: 'Proyectos Completados' },
+			{ value: '98', suffix: '%', label: 'Satisfacción del Cliente' },
+			{ value: '15', suffix: '+', label: 'Años de Experiencia' },
+			{ value: '24', suffix: '/7', label: 'Soporte Operativo' },
+		].map((kpi) => (
+			<div class="gs-fade-up text-center bg-white border border-gray-200 rounded-2xl py-8 px-4">
+				<span class="block text-4xl font-black text-secondary leading-none mb-2 gs-counter" data-target={kpi.value} data-suffix={kpi.suffix}>{kpi.value}{kpi.suffix}</span>
+				<span class="text-xs uppercase tracking-wide text-muted font-semibold">{kpi.label}</span>
+			</div>
+		))}
+	</div>
+</section>
+
+<section class="relative py-18 px-6 bg-gradient-to-br from-primary to-dark overflow-hidden">
+	<div class="relative z-10 max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+		<div class="gs-fade-left text-center md:text-left">
+			<h3 class="font-display text-2xl md:text-3xl text-white mb-2">¿Buscas un aliado técnico para tu próximo proyecto?</h3>
+			<p class="text-white/75">Nuestro equipo está listo para analizar tu requerimiento y proponer una solución integral.</p>
+		</div>
+		<div class="gs-fade-right flex flex-col sm:flex-row gap-4">
+			<a href="/contacto" class="inline-flex items-center justify-center px-7 py-3.5 rounded-md font-semibold bg-secondary text-primary hover:bg-secondary-light transition-all duration-300">Solicitar cotización</a>
+			<a href="https://wa.me/51999999999" target="_blank" rel="noreferrer" class="inline-flex items-center justify-center px-7 py-3.5 rounded-md font-semibold border-2 border-white text-white hover:bg-white hover:text-primary transition-all duration-300">WhatsApp</a>
+		</div>
+	</div>
+</section>
+
+<script>
+	const carousels = Array.from(document.querySelectorAll('[data-project-carousel]'));
+
+	carousels.forEach((carousel) => {
+		const track = carousel.querySelector('[data-track]');
+		const prev = carousel.querySelector('[data-prev]');
+		const next = carousel.querySelector('[data-next]');
+
+		if (!track || !prev || !next) return;
+
+		const getStep = () => {
+			const firstCard = track.querySelector('article');
+			if (!firstCard) return 300;
+			const gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || '20');
+			return firstCard.getBoundingClientRect().width + gap;
+		};
+
+		const slide = (direction) => {
+			track.scrollBy({ left: getStep() * direction, behavior: 'smooth' });
+		};
+
+		prev.addEventListener('click', () => slide(-1));
+		next.addEventListener('click', () => slide(1));
+
+		let autoplay = setInterval(() => slide(1), 5000);
+		const stop = () => clearInterval(autoplay);
+		const start = () => {
+			stop();
+			autoplay = setInterval(() => slide(1), 5000);
+		};
+
+		track.addEventListener('mouseenter', stop);
+		track.addEventListener('mouseleave', start);
+		track.addEventListener('touchstart', stop, { passive: true });
+		track.addEventListener('touchend', start, { passive: true });
+	});
+</script>

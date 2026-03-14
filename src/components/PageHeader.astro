@@ -1,0 +1,28 @@
+---
+interface Props {
+	title: string;
+	subtitle?: string;
+	image?: string;
+}
+const {
+	title,
+	subtitle,
+	image = 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1900&q=80',
+} = Astro.props;
+---
+
+<section class="page-header relative pt-40 pb-24 px-6 text-center overflow-hidden border-b border-white/10">
+	<img src={image} alt={title} class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+	<div class="absolute inset-0 bg-gradient-to-r from-dark/85 via-primary/75 to-dark/80"></div>
+	<div class="absolute inset-0 opacity-[0.18] bg-[linear-gradient(135deg,rgba(255,255,255,0.12)_0%,rgba(255,255,255,0.12)_14%,transparent_14%,transparent_50%,rgba(255,255,255,0.1)_50%,rgba(255,255,255,0.1)_64%,transparent_64%,transparent_100%)] bg-[length:48px_48px]"></div>
+	<div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(244,180,0,0.25),transparent_52%)]"></div>
+	<div class="relative z-10">
+		<h1 class="gs-fade-up font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-3">{title}</h1>
+		{subtitle && <p class="gs-fade-up text-white/80 text-lg max-w-[550px] mx-auto mb-6 leading-relaxed">{subtitle}</p>}
+		<div class="gs-fade-up flex justify-center items-center gap-2 text-sm">
+			<a href="/" class="text-white/70 hover:text-secondary transition-colors">Inicio</a>
+			<span class="text-white/40">/</span>
+			<span class="text-secondary font-semibold">{title}</span>
+		</div>
+	</div>
+</section>

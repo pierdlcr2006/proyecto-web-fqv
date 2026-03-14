@@ -1,0 +1,191 @@
+---
+const serviceLines = [
+	{
+		title: 'Construcción y Montaje',
+		tag: 'Obra y estructura',
+		desc: 'Ejecutamos obras civiles, estructuras metálicas y montajes industriales con planificación de recursos y control de hitos.',
+		image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80',
+		features: ['Estructuras metálicas', 'Obras civiles e industriales', 'Montajes mecánicos', 'Puesta en marcha asistida'],
+	},
+	{
+		title: 'Mantenimiento Industrial',
+		tag: 'Continuidad operativa',
+		desc: 'Desarrollamos mantenimiento preventivo y correctivo para reducir paradas y extender la vida útil de equipos críticos.',
+		image: 'https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=1200&q=80',
+		features: ['Programas preventivos', 'Intervenciones correctivas', 'Mantenimiento en planta', 'Reportes técnicos de avance'],
+	},
+	{
+		title: 'Electricidad y Automatización',
+		tag: 'Energía y control',
+		desc: 'Implementamos sistemas eléctricos y de automatización con criterios de seguridad, continuidad y eficiencia energética.',
+		image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1200&q=80',
+		features: ['Tableros y distribución', 'Baja y media tensión', 'Puesta a tierra', 'Integración de control'],
+	},
+	{
+		title: 'Movimiento de Tierras',
+		tag: 'Preparación de terreno',
+		desc: 'Gestionamos excavación, relleno, compactación y perfilado para habilitar frentes de trabajo en plazos exigentes.',
+		image: 'https://images.unsplash.com/photo-1541976844346-f18aeac57b06?auto=format&fit=crop&w=1200&q=80',
+		features: ['Excavación y nivelación', 'Relleno y compactación', 'Demolición controlada', 'Transporte de material'],
+	},
+	{
+		title: 'Remodelaciones y Acabados',
+		tag: 'Espacios funcionales',
+		desc: 'Modernizamos instalaciones operativas y comerciales, optimizando funcionalidad, seguridad y presentación final.',
+		image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
+		features: ['Drywall y tabiquería', 'Pisos y revestimientos', 'Pintura técnica', 'Adecuaciones interiores'],
+	},
+	{
+		title: 'Seguridad y Señalización',
+		tag: 'Cumplimiento SST',
+		desc: 'Implementamos señalética y planes de seguridad en línea con normativa peruana y estándares internacionales.',
+		image: 'https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=1200&q=80',
+		features: ['IPERC y matriz de riesgo', 'Señalización industrial', 'Capacitación SST', 'Auditoría y seguimiento'],
+	},
+];
+
+const modalities = [
+	{
+		title: 'Servicio Programado',
+		desc: 'Planificación previa con cronograma, recursos asignados y reportes por entregable.',
+	},
+	{
+		title: 'Paradas de Planta',
+		desc: 'Intervenciones intensivas en ventanas críticas de mantenimiento y reinicio operacional.',
+	},
+	{
+		title: 'Atención de Emergencia',
+		desc: 'Respuesta rápida para contingencias operativas con soporte técnico y personal de campo.',
+	},
+];
+
+const process = [
+	{ step: '01', title: 'Levantamiento técnico', desc: 'Evaluamos alcance, condiciones de sitio y riesgos principales.' },
+	{ step: '02', title: 'Propuesta y planificación', desc: 'Definimos recursos, cronograma y metodología de ejecución.' },
+	{ step: '03', title: 'Ejecución controlada', desc: 'Desarrollamos el servicio con supervisión de seguridad y calidad.' },
+	{ step: '04', title: 'Cierre y seguimiento', desc: 'Entregamos reportes, recomendaciones y soporte post-servicio.' },
+];
+---
+
+<section class="py-20 px-6 bg-white">
+	<div class="max-w-7xl mx-auto">
+		<div class="text-center mb-12 gs-fade-up">
+			<span class="inline-block text-xs font-bold text-secondary uppercase tracking-widest bg-secondary/10 px-4 py-1.5 rounded-full mb-3">Líneas de Servicio</span>
+			<h2 class="font-display text-4xl md:text-5xl lg:text-6xl text-primary leading-none tracking-wide mb-4">Soluciones Técnicas Para Operaciones Exigentes</h2>
+			<p class="text-muted text-lg max-w-[760px] mx-auto">Integración de especialidades para construcción, industria y energía, con foco en seguridad, tiempos y continuidad operativa.</p>
+		</div>
+
+		<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+			{[
+				{ value: '500', suffix: '+', label: 'Servicios ejecutados' },
+				{ value: '24', suffix: '/7', label: 'Respuesta operativa' },
+				{ value: '15', suffix: '+', label: 'Años de experiencia' },
+				{ value: '98', suffix: '%', label: 'Satisfacción cliente' },
+			].map((kpi) => (
+				<div class="gs-fade-up bg-surface border border-gray-200 rounded-xl p-4 text-center">
+					<span class="block text-3xl md:text-4xl font-black text-secondary leading-none mb-1 gs-counter" data-target={kpi.value} data-suffix={kpi.suffix}>{kpi.value}{kpi.suffix}</span>
+					<span class="text-[0.7rem] uppercase tracking-wide text-muted font-semibold">{kpi.label}</span>
+				</div>
+			))}
+		</div>
+
+		<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
+			{serviceLines.map((service) => (
+				<article class="gs-fade-up group rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-sm hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300">
+					<div class="h-52 relative overflow-hidden">
+						<img src={service.image} alt={service.title} class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
+						<div class="absolute inset-0 bg-gradient-to-t from-dark/70 via-dark/10 to-transparent"></div>
+						<span class="absolute top-4 left-4 text-[0.65rem] font-bold text-primary bg-secondary px-3 py-1 rounded-full uppercase tracking-wide">{service.tag}</span>
+					</div>
+					<div class="p-5">
+						<h3 class="text-2xl font-display text-primary leading-none tracking-wide mb-3">{service.title}</h3>
+						<p class="text-sm text-muted leading-relaxed mb-4">{service.desc}</p>
+						<ul class="space-y-2 mb-5">
+							{service.features.map((feature) => (
+								<li class="flex items-start gap-2 text-sm text-primary/90">
+									<span class="mt-1 w-2 h-2 rounded-full bg-secondary shrink-0"></span>
+									<span>{feature}</span>
+								</li>
+							))}
+						</ul>
+						<a href="/contacto" class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-secondary transition-colors">
+							Solicitar cotización
+							<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+						</a>
+					</div>
+				</article>
+			))}
+		</div>
+	</div>
+</section>
+
+<section class="py-20 px-6 bg-surface">
+	<div class="max-w-7xl mx-auto grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-start">
+		<div class="gs-fade-left">
+			<span class="inline-block text-xs font-bold text-secondary uppercase tracking-widest bg-secondary/10 px-4 py-1.5 rounded-full mb-3">Modalidades de Atención</span>
+			<h2 class="font-display text-4xl md:text-5xl text-primary leading-none tracking-wide mb-4">Nos adaptamos a tu operación</h2>
+			<p class="text-muted text-lg leading-relaxed mb-7">Diseñamos el servicio según criticidad, tiempo de respuesta y condiciones operativas del cliente.</p>
+			<div class="space-y-4">
+				{modalities.map((mode, index) => (
+					<article class="bg-white border border-gray-200 rounded-xl p-5 hover:border-secondary/35 transition-colors">
+						<div class="flex items-start gap-4">
+							<span class="inline-flex w-8 h-8 shrink-0 items-center justify-center rounded-full bg-primary text-white text-xs font-black">0{index + 1}</span>
+							<div>
+								<h3 class="text-lg font-bold text-primary mb-1">{mode.title}</h3>
+								<p class="text-sm text-muted leading-relaxed">{mode.desc}</p>
+							</div>
+						</div>
+					</article>
+				))}
+			</div>
+		</div>
+
+		<div class="gs-fade-right">
+			<div class="rounded-2xl overflow-hidden h-64 md:h-80 mb-5">
+				<img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1200&q=80" alt="Equipo técnico ejecutando servicio industrial" class="w-full h-full object-cover" loading="lazy" />
+			</div>
+			<div class="bg-primary text-white rounded-2xl p-7">
+				<h3 class="font-display text-3xl leading-none tracking-wide mb-4">Resultado esperado por el cliente</h3>
+				<ul class="space-y-3">
+					{['Alcance claro y costos controlados', 'Cumplimiento de tiempos comprometidos', 'Ejecución segura sin afectar continuidad', 'Reportes técnicos para toma de decisiones'].map((item) => (
+						<li class="flex items-start gap-3 text-sm text-white/90">
+							<span class="mt-[2px] w-6 h-6 rounded-full bg-secondary text-primary flex items-center justify-center text-xs font-black">✓</span>
+							<span>{item}</span>
+						</li>
+					))}
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="py-20 px-6 bg-white">
+	<div class="max-w-7xl mx-auto">
+		<div class="text-center mb-12 gs-fade-up">
+			<span class="inline-block text-xs font-bold text-secondary uppercase tracking-widest bg-secondary/10 px-4 py-1.5 rounded-full mb-3">Metodología</span>
+			<h2 class="font-display text-4xl md:text-5xl text-primary leading-none tracking-wide mb-4">Cómo ejecutamos cada servicio</h2>
+		</div>
+		<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+			{process.map((item) => (
+				<article class="gs-fade-up border border-gray-200 rounded-2xl p-6 bg-surface">
+					<span class="inline-flex items-center justify-center text-xs font-black px-3 py-1 rounded-full bg-primary text-white mb-4">{item.step}</span>
+					<h3 class="text-lg font-bold text-primary mb-2">{item.title}</h3>
+					<p class="text-sm text-muted leading-relaxed">{item.desc}</p>
+				</article>
+			))}
+		</div>
+	</div>
+</section>
+
+<section class="relative py-18 px-6 bg-gradient-to-br from-primary to-dark overflow-hidden">
+	<div class="relative z-10 max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+		<div class="gs-fade-left text-center md:text-left">
+			<h3 class="font-display text-3xl md:text-4xl text-white leading-none tracking-wide mb-3">¿Necesitas una propuesta técnica?</h3>
+			<p class="text-white/75 max-w-[620px]">Te ayudamos a definir el alcance y la mejor estrategia de ejecución para tu proyecto.</p>
+		</div>
+		<div class="gs-fade-right flex flex-col sm:flex-row gap-4">
+			<a href="/contacto" class="inline-flex items-center justify-center px-7 py-3.5 rounded-md font-semibold bg-secondary text-primary hover:bg-secondary-light transition-all duration-300">Solicitar cotización</a>
+			<a href="tel:+51999999999" class="inline-flex items-center justify-center px-7 py-3.5 rounded-md font-semibold border-2 border-white text-white hover:bg-white hover:text-primary transition-all duration-300">+51 999 999 999</a>
+		</div>
+	</div>
+</section>

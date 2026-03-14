@@ -1,23 +1,133 @@
+---
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = 'FQV Contratistas y Servicios Generales SAC',
+	description = 'FQV Contratistas y Servicios Generales SAC - Soluciones integrales en construcción, minería y servicios generales en todo el Perú.',
+} = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<meta name="description" content={description} />
+		<meta name="keywords" content="FQV Contratistas, construcción civil, minería, servicios generales, proyectos industriales, Perú" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:site_name" content="FQV Contratistas y Servicios Generales SAC" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet" />
+		<title>{title}</title>
 	</head>
-	<body>
-		<slot />
+	<body class="font-sans text-gray-900 bg-white leading-relaxed">
+		<Navbar />
+		<main>
+			<slot />
+		</main>
+		<Footer />
+
+		<!-- GSAP Animations -->
+		<script>
+			import { gsap } from 'gsap';
+			import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+			gsap.registerPlugin(ScrollTrigger);
+
+			document.querySelectorAll('.gs-fade-up').forEach((el) => {
+				gsap.from(el, {
+					scrollTrigger: { trigger: el, start: 'top 90%', once: true, toggleActions: 'play none none none' },
+					y: 60, opacity: 0, duration: 0.9, ease: 'power3.out',
+				});
+			});
+
+			document.querySelectorAll('.gs-fade-left').forEach((el) => {
+				gsap.from(el, {
+					scrollTrigger: { trigger: el, start: 'top 90%', once: true, toggleActions: 'play none none none' },
+					x: -80, opacity: 0, duration: 0.9, ease: 'power3.out',
+				});
+			});
+
+			document.querySelectorAll('.gs-fade-right').forEach((el) => {
+				gsap.from(el, {
+					scrollTrigger: { trigger: el, start: 'top 90%', once: true, toggleActions: 'play none none none' },
+					x: 80, opacity: 0, duration: 0.9, ease: 'power3.out',
+				});
+			});
+
+			document.querySelectorAll('.gs-scale-in').forEach((el) => {
+				gsap.from(el, {
+					scrollTrigger: { trigger: el, start: 'top 90%', once: true, toggleActions: 'play none none none' },
+					scale: 0.85, opacity: 0, duration: 0.8, ease: 'back.out(1.4)',
+				});
+			});
+
+			document.querySelectorAll('.gs-stagger').forEach((parent) => {
+				gsap.from(parent.children, {
+					scrollTrigger: { trigger: parent, start: 'top 88%', once: true, toggleActions: 'play none none none' },
+					y: 50, opacity: 0, duration: 0.7, stagger: 0.15, ease: 'power3.out',
+				});
+			});
+
+			document.querySelectorAll('.gs-counter').forEach((el) => {
+				const target = parseInt(el.getAttribute('data-target') || '0');
+				const suffix = el.getAttribute('data-suffix') || '';
+				const counter = { val: 0 };
+				const anim = gsap.to(counter, {
+					val: target,
+					duration: 2,
+					ease: 'power2.out',
+					onUpdate() { el.textContent = Math.round(counter.val) + suffix; },
+					onComplete() { el.textContent = target + suffix; },
+				});
+				ScrollTrigger.create({
+					trigger: el,
+					start: 'top 92%',
+					once: true,
+					onEnter: () => { counter.val = 0; anim.restart(); },
+				});
+			});
+
+			const heroContent = document.querySelector('.hero-content');
+			if (heroContent) {
+				const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+				tl.from('.hero-badge', { y: 30, opacity: 0, duration: 0.7 })
+				  .from('.hero-title', { y: 40, opacity: 0, duration: 0.8 }, '-=0.4')
+				  .from('.hero-description', { y: 30, opacity: 0, duration: 0.7 }, '-=0.4')
+				  .from('.hero-actions', { y: 25, opacity: 0, duration: 0.6 }, '-=0.3')
+				  .from('.hero-stats .stat', { y: 30, opacity: 0, duration: 0.5, stagger: 0.12 }, '-=0.2');
+			}
+
+			const pageHeader = document.querySelector('.page-header');
+			if (pageHeader) {
+				gsap.to('.page-header', {
+					scrollTrigger: { trigger: '.page-header', start: 'top top', end: 'bottom top', scrub: true },
+					backgroundPositionY: '40%', ease: 'none',
+				});
+			}
+
+			document.querySelectorAll('.gs-line').forEach((el) => {
+				gsap.from(el, {
+					scrollTrigger: { trigger: el, start: 'top 92%', once: true, toggleActions: 'play none none none' },
+					scaleX: 0, transformOrigin: 'left center', duration: 0.8, ease: 'power3.inOut',
+				});
+			});
+		</script>
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
