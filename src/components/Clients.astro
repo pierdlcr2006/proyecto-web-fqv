@@ -126,15 +126,15 @@ const operations = [
 	},
 ];
 
-const clientFilters = ['Todos', ...new Set(clients.map((client) => client.sector))];
-const clientsDetailed = clients.map((client) => ({
-	...client,
-	initials: client.name
-		.split(/\s+/)
-		.map((word) => word[0])
-		.join('')
-		.slice(0, 2),
-}));
+const clientLogos = [
+	{ name: 'Gloria', image: '/gloria.jpg' },
+	{ name: 'Municipalidad de Chorrillos', image: '/muni-chorrillos.jpg' },
+	{ name: 'Quimica Suiza', image: '/quimica-suiza.jpg' },
+];
+
+const logoSlides = Array.from({ length: 3 }, (_, shift) =>
+	Array.from({ length: 6 }, (_, index) => clientLogos[(index + shift) % clientLogos.length])
+);
 ---
 
 <section class="py-20 px-6 bg-white">
@@ -170,54 +170,40 @@ const clientsDetailed = clients.map((client) => ({
 </section>
 
 <section class="py-20 px-6 bg-surface">
-	<div class="max-w-7xl mx-auto rounded-3xl border border-gray-200 bg-white p-6 md:p-10 shadow-sm">
-		<div class="mb-8 text-center">
-			<span class="inline-block text-xs font-bold text-secondary uppercase tracking-widest bg-secondary/10 px-4 py-1.5 rounded-full mb-3">Portafolio de Clientes</span>
-			<h3 class="font-display text-4xl md:text-5xl text-primary leading-none tracking-wide">Empresas que operan con FQV</h3>
+	<div class="max-w-7xl mx-auto rounded-3xl border border-gray-200 bg-[#f3f3f3] p-8 md:p-12 lg:p-16 shadow-sm">
+		<div class="mb-10 text-center">
+			<h3 class="font-sans text-4xl md:text-6xl font-black uppercase tracking-wide text-primary">
+				Algunos de nuestros <span class="text-[#d82222]">Clientes</span>
+			</h3>
 		</div>
 
-		<div class="flex flex-nowrap md:flex-wrap gap-2.5 justify-start md:justify-center mb-8 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-			{clientFilters.map((filter, index) => (
+		<div class="overflow-hidden">
+			<div id="clientsLogoTrack" data-logo-slides={logoSlides.length} class="flex transition-transform duration-500 ease-out will-change-transform">
+				{logoSlides.map((slide) => (
+					<div class="min-w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-7 md:gap-9 items-center place-items-center">
+						{slide.map((logo) => (
+							<div class="w-full max-w-[200px] h-16 flex items-center justify-center">
+								<img src={logo.image} alt={`Logo de ${logo.name}`} loading="lazy" class="max-h-14 w-auto object-contain grayscale opacity-65 hover:opacity-100 transition-opacity duration-300" />
+							</div>
+						))}
+					</div>
+				))}
+			</div>
+		</div>
+
+		<div class="mt-10 flex justify-center items-center gap-3">
+			{logoSlides.map((_, index) => (
 				<button
 					type="button"
 					class:list={[
-						'client-filter whitespace-nowrap px-4 py-2 rounded-full border text-sm font-semibold transition-colors',
-						index === 0
-							? 'bg-primary text-white border-primary'
-							: 'bg-white text-primary border-primary/20 hover:border-primary/40',
+						'client-logo-dot w-3 h-3 rounded-full transition-colors',
+						index === 0 ? 'bg-[#d82222]' : 'bg-primary/20 hover:bg-primary/35',
 					]}
-					data-filter={filter}
-				>
-					{filter}
-				</button>
+					data-logo-dot={index}
+					aria-label={`Ir al slide ${index + 1}`}
+				></button>
 			))}
 		</div>
-
-		<div id="clientsGrid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-			{clientsDetailed.map((client) => (
-				<article
-					class="client-card group rounded-2xl overflow-hidden border border-gray-200 bg-white hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
-					data-sector={client.sector}
-				>
-					<div class="h-40 overflow-hidden relative">
-						<img src={client.image} alt={`Operacion para ${client.name}`} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-						<div class="absolute inset-0 bg-gradient-to-t from-dark/65 via-dark/10 to-transparent"></div>
-						<span class="absolute top-3 left-3 text-[0.62rem] font-bold text-primary bg-secondary px-2.5 py-1 rounded-full uppercase tracking-wide">{client.sector}</span>
-					</div>
-					<div class="p-4">
-						<div class="flex items-center gap-3 mb-2">
-							<div class="w-9 h-9 rounded-full bg-primary text-white text-xs font-black flex items-center justify-center shrink-0">{client.initials}</div>
-							<div class="min-w-0">
-								<p class="text-sm font-extrabold tracking-wide text-primary truncate">{client.name}</p>
-								<p class="text-[0.62rem] uppercase tracking-wider text-muted">{client.city}</p>
-							</div>
-						</div>
-						<p class="text-xs text-muted">Operacion tecnica con estandares altos de seguridad y cumplimiento.</p>
-					</div>
-				</article>
-			))}
-		</div>
-		<p id="clientsEmpty" class="hidden mt-6 text-center text-sm text-muted font-medium">No hay clientes visibles en esa categoria.</p>
 	</div>
 </section>
 
@@ -273,13 +259,59 @@ const clientsDetailed = clients.map((client) => ({
 </section>
 
 <script>
-	const filterButtons = Array.from(document.querySelectorAll('.client-filter'));
-	const clientCards = Array.from(document.querySelectorAll('.client-card'));
-	const emptyState = document.getElementById('clientsEmpty');
+	const logoTrack = document.getElementById('clientsLogoTrack');
+	const logoDots = Array.from(document.querySelectorAll('.client-logo-dot'));
+	const logoSlidesCount = Number(logoTrack?.getAttribute('data-logo-slides') || '0');
 
 	const opsTrack = document.getElementById('clientsOpsTrack');
 	const opsPrev = document.getElementById('clientsOpsPrev');
 	const opsNext = document.getElementById('clientsOpsNext');
+
+	const initLogoCarousel = () => {
+		if (!logoTrack || logoSlidesCount <= 1) return;
+
+		let current = 0;
+		let autoplay = 0;
+
+		const paintDots = () => {
+			logoDots.forEach((dot, index) => {
+				const active = index === current;
+				dot.classList.toggle('bg-[#d82222]', active);
+				dot.classList.toggle('bg-primary/20', !active);
+				dot.classList.toggle('hover:bg-primary/35', !active);
+			});
+		};
+
+		const goTo = (index) => {
+			current = (index + logoSlidesCount) % logoSlidesCount;
+			logoTrack.style.transform = `translateX(-${current * 100}%)`;
+			paintDots();
+		};
+
+		logoDots.forEach((dot) => {
+			dot.addEventListener('click', () => {
+				const index = Number(dot.getAttribute('data-logo-dot') || '0');
+				goTo(index);
+				start();
+			});
+		});
+
+		const stop = () => {
+			if (autoplay) clearInterval(autoplay);
+		};
+		const start = () => {
+			stop();
+			autoplay = setInterval(() => goTo(current + 1), 3200);
+		};
+
+		logoTrack.addEventListener('mouseenter', stop);
+		logoTrack.addEventListener('mouseleave', start);
+		logoTrack.addEventListener('touchstart', stop, { passive: true });
+		logoTrack.addEventListener('touchend', start, { passive: true });
+
+		paintDots();
+		start();
+	};
 
 	const initCarousel = (track, prev, next, delay = 4700) => {
 		if (!track) return;
@@ -312,32 +344,6 @@ const clientsDetailed = clients.map((client) => ({
 		track.addEventListener('touchend', start, { passive: true });
 	};
 
-	const applyFilter = (filter) => {
-		let visibleCount = 0;
-		clientCards.forEach((card) => {
-			const sector = card.getAttribute('data-sector');
-			const visible = filter === 'Todos' || sector === filter;
-			card.classList.toggle('hidden', !visible);
-			if (visible) visibleCount += 1;
-		});
-		emptyState?.classList.toggle('hidden', visibleCount > 0);
-	};
-
-	filterButtons.forEach((button) => {
-		button.addEventListener('click', () => {
-			const filter = button.getAttribute('data-filter') || 'Todos';
-
-			filterButtons.forEach((btn) => {
-				btn.classList.remove('bg-primary', 'text-white', 'border-primary');
-				btn.classList.add('bg-white', 'text-primary', 'border-primary/20');
-			});
-
-			button.classList.remove('bg-white', 'text-primary', 'border-primary/20');
-			button.classList.add('bg-primary', 'text-white', 'border-primary');
-
-			applyFilter(filter);
-		});
-	});
-
+	initLogoCarousel();
 	initCarousel(opsTrack, opsPrev, opsNext, 5000);
 </script>
